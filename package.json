@@ -39,6 +39,7 @@
   "jest": {
     "testPathIgnorePatterns": [
       "<rootDir>/.next/",
+      "<rootDir>/.vercel/",
       "<rootDir>/node_modules/"
     ],
     "transform": {
