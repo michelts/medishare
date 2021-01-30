@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# S3 local development
+.buckets/videos/

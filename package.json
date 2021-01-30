@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "local-s3": "s3rver -p 8000 -d ./.buckets/ --configure-bucket videos ./.buckets/cors.xml"
   },
   "dependencies": {
     "@vercel/node": "^1.9.0",
