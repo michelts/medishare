@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
     "next": "10.0.5",
@@ -19,7 +20,10 @@
     "@testing-library/react": "^11.2.3",
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
     "autoprefixer": "^10.2.4",
+    "eslint": "^7.18.0",
     "jest": "^26.6.3",
     "postcss": "^8.2.4",
     "postcss-preset-env": "^6.7.0",

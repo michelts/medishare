@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router'
 import Link from "next/link"
 
-const Menu = () => {
+const Menu: React.FC = () => {
   const { asPath } = useRouter();
   return (
     <div className="w-full bg-blue-900">

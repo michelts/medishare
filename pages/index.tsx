@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Title from '@atoms/Title';
 
-const Home = () => (
+const Home: React.FC = () => (
   <div>
     <Head>
       <title>Shared Content</title>
