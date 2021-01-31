@@ -13,7 +13,7 @@ function getPresignedPostData({ id }) {
     s3ForcePathStyle: true,
     accessKeyId: 'S3RVER',
     secretAccessKey: 'S3RVER',
-    endpoint: new AWS.Endpoint('http://localhost:8000'),
+    endpoint: new AWS.Endpoint('http://localhost:8001'),
   });
   const params = {
     Expires: 60,

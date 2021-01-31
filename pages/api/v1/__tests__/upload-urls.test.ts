@@ -7,7 +7,7 @@ describe('upload-urls API endpoint', () => {
   });
 
   it('should return a signed post url to upload the file *{id}.webm*', async () => {
-    const endpoint = 'http://localhost:8000'; // compatible with s3-local
+    const endpoint = 'http://localhost:8001'; // compatible with s3-local
     const bucketName = 'videos';
     const id = uuidv1();
 
