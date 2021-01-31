@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - "8000:8000"
+
+  aws:
+    image: amazon/aws-cli
+    tty: true
+    volumes:
+      - ~/.aws:/root/.aws
