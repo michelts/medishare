@@ -10,7 +10,7 @@ describe('shared-contents API endpoint', () => {
   it('should save the shared content id, name and url to the database', async () => {
     const payload = SharedContentFactory.build();
     const { status, data } = await axios.post('http://localhost:3000/api/v1/shared-contents', payload);
-    expect(status).toEqual(200);
+    expect(status).toEqual(201);
     expect(data).toEqual(payload);
     expect(await getSavedData(payload)).toEqual({
       Item: {

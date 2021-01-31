@@ -4,7 +4,7 @@ import AWS from 'aws-sdk';
 export default async function (req: NowRequest, res: NowResponse): void {
   if(req.method === 'POST') {
     const { id, name, url } = req.body;
-    res.status(200).json(await createObject({ id, name, url }));
+    res.status(201).json(await createObject({ id, name, url }));
   }
 }
 
@@ -24,12 +24,12 @@ function createObject({ id, name, url }) {
     ReturnConsumedCapacity: "TOTAL",
     TableName: "SharedContent"
   };
-  dynamodb.putItem(params, (err, data) => {
-    if(err) {
-      console.log(err, err.stack);
-    } else {
-      console.log(data);
-    }
+  return new Promise((resolve, reject) => {
+    dynamodb.putItem(params, (err) => {
+      if(err) {
+        reject(err);
+      }
+      resolve({id, name, url });
+    });
   });
-  return { id, name, url };
 }
