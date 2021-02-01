@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ShareForm component should create the share obj after the user record video, set dest and pick the media 1`] = `
+exports[`ShareForm component should create the share obj after the user record video, set dest and allow share through whatsapp 1`] = `
 Array [
   Array [
     Object {

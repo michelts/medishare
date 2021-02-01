@@ -9,18 +9,20 @@ const ShareForm: React.FC = () => {
   const [video, setVideo] = useState(null);
   const [name, setName] = useState('');
   const [saved, setSaved] = useState(undefined);
+  const [shareObj, setShareObj] = useState(undefined);
 
   useEffect(() => {
     async function save() {
-      await createSharedContent({ name, file: video });
+      const createdObj = await createSharedContent({ name, file: video });
       setSaved(true);
+      setShareObj(createdObj);
     }
 
-    if(mode && video && name && saved === undefined) {
+    if(mode && video && name && !saved) {
       setSaved(false);
       save();
     }
-  }, [mode, video, name]);
+  }, [mode, video, name, saved, setSaved, setShareObj]);
 
   return (
     <>
@@ -29,7 +31,7 @@ const ShareForm: React.FC = () => {
       {mode === 'upload' && <div>Not Implemented yet! Check it out later!</div>}
       {video && <NameField onChange={(name) => setName(name)} />}
       {name && saved === false && <Loading>Uploading video, please wait...</Loading>}
-      {name && saved === true && <ShareOptions />}
+      {name && saved === true && <ShareOptions {...shareObj} />}
     </>
   );
 }
@@ -82,12 +84,17 @@ const NameField = ({ onChange }) => {
   );
 };
 
-const ShareOptions = () => (
+const ShareOptions = ({ id }) => (
   <div className="mb-3">
     <div className="mb-2">How to share?</div>
     <ul className="flex flex-row">
       <li className="mr-2 p-2 bg-blue-300 hover:bg-blue-400">
-        <a href="whatsapp://send?text=Video shared through MediShare: http://google.com" data-action="share/whatsapp/share">Whatsapp</a>
+        <a
+          href={`whatsapp://send?text=Video shared through MediShare: http://medishare.vercel.com/share-${id}`}
+          data-action="share/whatsapp/share"
+        >
+          Whatsapp
+        </a>
       </li>
       <li className="mr-2 p-2 bg-blue-300 hover:bg-blue-400">
         <a href="#">Email</a>

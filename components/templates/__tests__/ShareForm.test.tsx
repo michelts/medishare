@@ -16,7 +16,7 @@ jest.mock('react-video-recorder', () => jest.fn(({ onRecordingComplete }) => {
 describe('ShareForm component', () => {
   const recipientName = 'John Smith';
 
-  it('should create the share obj after the user record video, set dest and pick the media', async () => {
+  it('should create the share obj after the user record video, set dest and allow share through whatsapp', async () => {
     const sharedContent = SharedContentFactory.build();
     createSharedContent.mockResolvedValue(sharedContent);
 
@@ -32,7 +32,10 @@ describe('ShareForm component', () => {
     screen.getByText('Uploading video, please wait...');
     expect(createSharedContent).toHaveBeenCalledWith({ name: recipientName, file: 'video-blob' });
 
-    await screen.findByRole('link', { name: 'Whatsapp' });
+    const link = await screen.findByRole('link', { name: 'Whatsapp' });
+    const title = 'Video shared through MediShare';
+    const url = `http://medishare.vercel.com/share-${sharedContent.id}`;
+    expect(link).toHaveProperty('href', encodeURI(`whatsapp://send?text=${title}: ${url}`));
   });
 
   function assertVideoRecorderWasRendered() {
