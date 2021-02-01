@@ -20,9 +20,6 @@ You can use the embed aws-cli docker image if needed:
 
 To create a table:
 
-    docker-compose run aws dynamodb create-table \
-      --table-name SharedContent \
-      --attribute-definitions AttributeName=Id,AttributeType=S AttributeName=Name,AttributeType=S \
-      --key-schema AttributeName=Id,KeyType=HASH AttributeName=Name,KeyType=RANGE \
-      --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
-      --endpoint-url http://dynamodb:8000
+   docker-compose run aws dynamodb create-table \
+      --endpoint-url http://dynamodb:8000 \
+      --cli-input-yaml file:///aws/create-table.yml
