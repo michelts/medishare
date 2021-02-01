@@ -1,16 +1,20 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import Title from '@atoms/Title';
+import ShareForm from '@templates/ShareForm';
 
-const Home: React.FC = () => (
-  <div>
-    <Head>
-      <title>Shared Content</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <main>
-      <Title>Shared Content</Title>
-    </main>
-  </div>
-);
+const AddSharedContent: React.FC = () => {
+  return (
+    <>
+      <Head>
+        <title>Add Shared Content</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main>
+        <Title>Add Shared Content</Title>
+        <ShareForm />
+      </main>
+    </>
+  );
+}
 
-export default Home;
+export default AddSharedContent;
