@@ -1801,6 +1801,21 @@ aws-sdk@^2.624.0, aws-sdk@^2.738.0:
     uuid "3.3.2"
     xml2js "0.4.19"
 
+aws-sdk@^2.792.0:
+  version "2.835.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.835.0.tgz#4769360da8f807d956200c70ec81843e7a450c3f"
+  integrity sha512-codVDhqE6PD4P7m5j8T0o4jer2Gt/oy+QqU+0BhzeuH/ryT+03YJDw8mXlfMWlhQ+6ZQBMZ3+YT69/85VgR6IQ==
+  dependencies:
+    buffer "4.9.2"
+    events "1.1.1"
+    ieee754 "1.1.13"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.3.2"
+    xml2js "0.4.19"
+
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -3289,6 +3304,15 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
+
+dynamoose@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-2.6.0.tgz#d89d2088c8406a234d27cb0ffebdbb2f696bcbfe"
+  integrity sha512-ioryc1LdO5DaUbuXRLGZ/g1Gei57TDouHPQGWjCPdiuicoNrlwxliZOZh2wjLQQYGPImUihyohWhRE0U82TjXg==
+  dependencies:
+    aws-sdk "^2.792.0"
+    source-map-support "^0.5.19"
+    uuid "^8.3.1"
 
 ebml-block@^1.1.0:
   version "1.1.2"
@@ -8344,7 +8368,7 @@ source-map-resolve@^0.6.0:
     atob "^2.1.2"
     decode-uri-component "^0.2.0"
 
-source-map-support@^0.5.17, source-map-support@^0.5.6, source-map-support@~0.5.12, source-map-support@~0.5.19:
+source-map-support@^0.5.17, source-map-support@^0.5.19, source-map-support@^0.5.6, source-map-support@~0.5.12, source-map-support@~0.5.19:
   version "0.5.19"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.19.tgz#a98b62f86dcaf4f67399648c085291ab9e8fed61"
   integrity sha512-Wonm7zOCIJzBGQdB+thsPar0kYuCIzYvxZwlBa87yi/Mdjv7Tip2cyVbLj5o0cFPN4EVkuTwb3GDDyUx2DGnGw==
@@ -9307,7 +9331,7 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-uuid@^8.3.0:
+uuid@^8.3.0, uuid@^8.3.1:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==

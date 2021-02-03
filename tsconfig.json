@@ -5,6 +5,9 @@
       "@services/*": [
         "services/*"
       ],
+      "@models/*": [
+        "models/*"
+      ],
       "@atoms/*": [
         "components/atoms/*"
       ],

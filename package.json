@@ -13,6 +13,7 @@
   "dependencies": {
     "@vercel/node": "^1.9.0",
     "axios": "^0.21.1",
+    "dynamoose": "^2.6.0",
     "next": "10.0.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -50,6 +51,7 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
       "@factories$": "<rootDir>/factories.ts",
+      "@models/(.*)$": "<rootDir>/models/$1",
       "@services/(.*)$": "<rootDir>/services/$1",
       "@atoms/(.*)$": "<rootDir>/components/atoms/$1",
       "@molecules/(.*)$": "<rootDir>/components/molecules/$1",
