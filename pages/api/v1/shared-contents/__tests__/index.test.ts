@@ -2,7 +2,7 @@ import axios from 'axios';
 import { SharedContentFactory } from '@factories';
 import AWS from 'aws-sdk';
 
-describe('shared-contents API endpoint', () => {
+describe('shared-contents list API endpoint', () => {
   beforeAll(() => {
     axios.defaults.adapter = require('axios/lib/adapters/http');
   });
