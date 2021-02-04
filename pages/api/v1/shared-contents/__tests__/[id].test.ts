@@ -18,7 +18,8 @@ describe('shared-contents detail API endpoint', () => {
     expect(data).toEqual({
       id: sharedContentData.id,
       name: sharedContentData.name,
-      url: `http://localhost:8000/videos/${sharedContent.filename}`,
+      url: expect.any(String),
     });
+    expect(data.url).toMatch(new RegExp(`http://localhost:8001/videos/${sharedContent.filename}`));
   });
 });
