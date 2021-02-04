@@ -1,4 +1,4 @@
-const Anchor: React.FC<{ onClick: () => void , children: React.Node }> = ({ onClick, children }) => (
+const Anchor: React.FC<{ onClick: () => void , children: React.ReactNode }> = ({ onClick, children }) => (
   <button
     className="text-blue-600 hover:underline"
     onClick={onClick}

@@ -19,7 +19,8 @@
       ],
       "@templates/*": [
         "components/templates/*"
-      ]
+      ],
+      "@factories": ["factories"]
     },
     "target": "es5",
     "lib": [
@@ -45,6 +46,8 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.test.tsx"
   ]
 }

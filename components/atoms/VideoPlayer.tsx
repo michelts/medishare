@@ -1,6 +1,6 @@
 type VideoType = {
-  width: int,
-  height: int,
+  width: number,
+  height: number,
   src: string,
 }
 

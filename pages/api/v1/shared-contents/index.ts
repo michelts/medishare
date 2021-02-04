@@ -1,7 +1,7 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import SharedContent from '@models/shared-content';
 
-export default async function (req: NowRequest, res: NowResponse): void {
+export default async function (req: NowRequest, res: NowResponse): Promise<void> {
   if(req.method === 'POST') {
     const { id, name, filename } = req.body;
     res.status(201).json(await createObject({ id, name, filename }));

@@ -7,7 +7,7 @@ type SharedContent = {
   filename: string
 };
 
-export default async function createSharedContent({ name, file }: { name: string, file: string }): SharedContent {
+export default async function createSharedContent({ name, file }: { name: string, file: string }): Promise<SharedContent> {
   const id = uuidv4()
   const { url, fields, filename } = await getSignedPostUrl({ id });
   await postFile({ url, fields, file });

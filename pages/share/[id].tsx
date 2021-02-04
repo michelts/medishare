@@ -3,7 +3,14 @@ import axios from 'axios';
 import ShareDetail from '@templates/ShareDetail';
 import { GetServerSideProps } from 'next'
 
-const SharedContentDetail: React.FC = ({ data: { name, url } }) => {
+type SharedContentDetailType = {
+  data: {
+    name: string,
+    url: string,
+  }
+};
+
+const SharedContentDetail: React.FC<SharedContentDetailType> = ({ data: { name, url } }) => {
   return (
     <>
       <Head>

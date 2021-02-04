@@ -1,7 +1,7 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import AWS from 'aws-sdk';
 
-export default async function (req: NowRequest, res: NowResponse): void {
+export default async function (req: NowRequest, res: NowResponse): Promise<void> {
   if(req.method === 'POST') {
     const { id } = req.body;
     res.status(200).json(await getPresignedPostData({ id }));

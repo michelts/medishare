@@ -2,10 +2,17 @@ import { NowRequest, NowResponse } from '@vercel/node';
 import AWS from 'aws-sdk';
 import SharedContent from '@models/shared-content';
 
-export default async function (req: NowRequest, res: NowResponse): void {
+type Query = {
+  query: {
+    id: string;
+  }
+};
+
+export default async function (req: NowRequest & Query, res: NowResponse): Promise<void> {
   if(req.method === 'GET') {
-    const { query: { id } } = req;
-    const sharedContent = await SharedContent.get(id);
+    const { query } = req;
+    console.log(query.id);
+    const sharedContent = await SharedContent.get(query.id);
     const endpoint = 'http://localhost:8001';
     const bucket = 'videos';
     const s3 = new AWS.S3({
