@@ -4,19 +4,19 @@ import axios from 'axios';
 type SharedContent = {
   id: string,
   name: string,
-  url: string
+  filename: string
 };
 
 export default async function createSharedContent({ name, file }: { name: string, file: string }): SharedContent {
   const id = uuidv4()
-  const { url, fields } = await getSignedPostUrl({ id });
+  const { url, fields, filename } = await getSignedPostUrl({ id });
   await postFile({ url, fields, file });
-  return await saveSharedContent({ id, name, url });
+  return await saveSharedContent({ id, name, filename });
 }
 
 async function getSignedPostUrl({ id }) {
-  const { data: { url, fields } } = await axios.post('/api/v1/upload-urls/', { id });
-  return { url, fields };
+  const { data: { url, fields, filename } } = await axios.post('/api/v1/upload-urls/', { id });
+  return { url, fields, filename };
 }
 
 async function postFile({ url, fields, file }) {
@@ -26,7 +26,7 @@ async function postFile({ url, fields, file }) {
   await axios.post(url, payload);
 }
 
-async function saveSharedContent({ id, name, url }) {
-  const { data } = await axios.post('/api/v1/shared-contents/', { id, name, url })
+async function saveSharedContent({ id, name, filename }) {
+  const { data } = await axios.post('/api/v1/shared-contents/', { id, name, filename })
   return data;
 }

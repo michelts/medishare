@@ -17,7 +17,7 @@ describe('createSharedContent service call', () => {
   it('should get a signed post url, upload file and create a shared content instance', async () => {
     const sharedContent = SharedContentFactory.build();
     uuidv4.mockReturnValue(sharedContent.id);
-    const signedPostData = SignedPostDataFactory.build({ url: sharedContent.url });
+    const signedPostData = SignedPostDataFactory.build({ filename: sharedContent.filename });
     axios.post
       .mockResolvedValueOnce({ data: signedPostData }) // post to get url
       .mockResolvedValueOnce({}) // post to upload file: 200 ok

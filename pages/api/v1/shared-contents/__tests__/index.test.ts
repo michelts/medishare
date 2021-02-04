@@ -15,6 +15,6 @@ describe('shared-contents list API endpoint', () => {
 
     const sharedContent = await SharedContent.get(payload.id);
     expect(sharedContent.name).toEqual(payload.name);
-    expect(sharedContent.url).toEqual(payload.url);
+    expect(sharedContent.filename).toEqual(payload.filename);
   });
 });

@@ -14,6 +14,7 @@ describe('upload-urls API endpoint', () => {
     const { status, data } = await axios.post('http://localhost:3000/api/v1/upload-urls', { id });
     expect(status).toEqual(200);
     expect(data.url).toEqual(`${endpoint}/${bucketName}`);
+    expect(data.filename).toEqual(`${id}.webm`);
     expect(data.fields['Content-Type']).toEqual('video/webm');
     expect(data.fields['bucket']).toEqual(bucketName);
     expect(data.fields['key']).toEqual(`${id}.webm`);

@@ -9,13 +9,13 @@ dynamoose.aws.ddb.local();
 const sharedContentSchema = new dynamoose.Schema({
   id: String,
   name: String,
-  url: String,
+  filename: String,
 }, { timestamps: true, });
 
 class SharedContentType extends Document {
   id: string;
   name: string;
-  url: string;
+  filename: string;
 }
 
 const SharedContent = dynamoose.model<SharedContentType>('SharedContent', sharedContentSchema);

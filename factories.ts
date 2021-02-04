@@ -8,4 +8,4 @@ export const SignedPostDataFactory = new Factory()
 export const SharedContentFactory = new Factory()
   .attr('id', () => uuidv1())
   .attr('name', 'John Smith')
-  .attr('url', ['id'], (id) => `http://url.to/${id}.webm`);
+  .attr('filename', ['id'], (id) => `${id}.webm`);
