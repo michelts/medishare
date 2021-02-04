@@ -1,15 +1,12 @@
 type VideoType = {
-  width: number,
-  height: number,
   src: string,
 }
 
-const VideoPlayer: React.FC<VideoType> = ({ width, height, src }) => (
+const VideoPlayer: React.FC<VideoType> = ({ src }) => (
   <video
     aria-label="Video Player"
-    width={width}
-    height={height}
     controls
+    className="w-100"
   >
     <source src={src} type="video/webm" />
     Your browser does not support the video tag.

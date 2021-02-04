@@ -32,14 +32,25 @@ describe('ShareForm component', () => {
     screen.getByText('Uploading video, please wait...');
     expect(createSharedContent).toHaveBeenCalledWith({ name: recipientName, file: 'video-blob' });
 
-    const link = await screen.findByRole('link', { name: 'Whatsapp' });
-    const title = 'Video shared through MediShare';
-    const url = `http://medishare.vercel.com/share-${sharedContent.id}`;
-    expect(link).toHaveProperty('href', encodeURI(`whatsapp://send?text=${title}: ${url}`));
+    await assertWhatsAppLinkIsPresent({ sharedContent });
+    await assertCopyUrlIsPresent({ sharedContent });
   });
 
   function assertVideoRecorderWasRendered() {
     fireEvent.click(screen.getByLabelText('Video Recorder'));
     expect(ReactVideoRecorder.mock.calls).toMatchSnapshot();
+  }
+
+  async function assertWhatsAppLinkIsPresent({ sharedContent }) {
+    const link = await screen.findByRole('link', { name: /whatsapp/i });
+    const title = 'Video shared through MediShare';
+    const url = `http://localhost/share/${sharedContent.id}`;
+    expect(link).toHaveProperty('href', encodeURI(`whatsapp://send?text=${title}: ${url}`));
+  }
+
+  async function assertCopyUrlIsPresent({ sharedContent }) {
+    const link = await screen.findByRole('link', { name: /copy url/i });
+    const url = `http://localhost/share/${sharedContent.id}`;
+    expect(link).toHaveProperty('href', url);
   }
 });

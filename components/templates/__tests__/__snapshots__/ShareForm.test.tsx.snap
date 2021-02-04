@@ -4,8 +4,9 @@ exports[`ShareForm component should create the share obj after the user record v
 Array [
   Array [
     Object {
+      "countdownTime": 0,
       "disablePictureInPicture": true,
-      "isFlipped": true,
+      "isFlipped": false,
       "isOnInitially": true,
       "mimetype": "video/webm",
       "onRecordingComplete": [Function],

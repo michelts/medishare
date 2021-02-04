@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import ReactVideoRecorder from 'react-video-recorder';
+import Link from "next/link"
 import createSharedContent from '@services/createSharedContent';
 import Anchor from '@atoms/Anchor';
 import Loading from '@atoms/Loading';
@@ -10,6 +11,14 @@ const ShareForm: React.FC = () => {
   const [name, setName] = useState('');
   const [saved, setSaved] = useState(undefined);
   const [shareObj, setShareObj] = useState(undefined);
+
+  const handleReset = useCallback(() => {
+    setMode(null);
+    setVideo(null);
+    setName('');
+    setSaved(undefined);
+    setShareObj(undefined);
+  }, [setMode, setVideo, setName, setSaved, setShareObj]);
 
   useEffect(() => {
     async function save() {
@@ -28,10 +37,10 @@ const ShareForm: React.FC = () => {
     <>
       {!mode && <ModePicker onChange={(mode) => setMode(mode)} />}
       {mode === 'record' && <VideoRecorder onChange={(video) => setVideo(video)} />}
-      {mode === 'upload' && <div>Not Implemented yet! Check it out later!</div>}
+      {mode === 'upload' && <NotImplementedError onReset={handleReset} />}
       {video && <NameField onChange={(name) => setName(name)} />}
       {name && saved === false && <Loading>Uploading video, please wait...</Loading>}
-      {name && saved === true && <ShareOptions {...shareObj} />}
+      {name && saved === true && shareObj && <ShareOptions id={shareObj.id} onReset={handleReset} />}
     </>
   );
 }
@@ -56,9 +65,10 @@ const ModePicker = ({ onChange }) => (
 const VideoRecorder = ({ onChange }) => (
   <div className="w-96 mb-3">
     <ReactVideoRecorder
-      mimetype="video/webm"
-      isFlipped
       isOnInitially
+      isFlipped={false}
+      mimetype="video/webm"
+      countdownTime={0}
       replayVideoAutoplayAndLoopOff
       disablePictureInPicture
       onRecordingComplete={videoBlob => onChange(videoBlob)}
@@ -79,30 +89,53 @@ const NameField = ({ onChange }) => {
         type="text"
         onChange={({ target: { value } }) => setValue(value)}
         onBlur={() => onChange(savedValue)}
+        onKeyDown={({ key }) => (key === 'Enter') && onChange(savedValue)}
       />
     </div>
   );
 };
 
-const ShareOptions = ({ id }) => (
-  <div className="mb-3">
-    <div className="mb-2">How to share?</div>
-    <ul className="flex flex-row">
-      <li className="mr-2 p-2 bg-blue-300 hover:bg-blue-400">
-        <a
-          href={`whatsapp://send?text=Video shared through MediShare: http://medishare.vercel.com/share-${id}`}
-          data-action="share/whatsapp/share"
-        >
-          Whatsapp
-        </a>
-      </li>
-      <li className="mr-2 p-2 bg-blue-300 hover:bg-blue-400">
-        <a href="#">Email</a>
-      </li>
-      <li className="mr-2 p-2 bg-blue-300 hover:bg-blue-400">
-        <a href="#">Copy link</a>
-      </li>
-    </ul>
+const ShareOptions = ({ id, onReset }) => {
+  const path = `/share/${id}`;
+  return (
+    <div className="mb-3">
+      <div className="mb-2">How to share?</div>
+      <div className="flex justify-between items-center w-100">
+        <ul className="flex flex-row">
+          <li className="mr-2 p-2 bg-blue-300 hover:bg-blue-400">
+            <a
+              href={`whatsapp://send?text=Video shared through MediShare: ${location.origin}${path}`}
+              data-action="share/whatsapp/share"
+            >
+              Whatsapp
+            </a>
+          </li>
+          <li className="mr-2 p-2 bg-blue-300 hover:bg-blue-400">
+            <Link href={path}>
+              <a>
+                Copy Url
+              </a>
+            </Link>
+          </li>
+        </ul>
+        <Anchor onClick={onReset}>
+          Reset data
+        </Anchor>
+      </div>
+    </div>
+  );
+}
+
+const NotImplementedError = ({ onReset }) => (
+  <div>
+    <div>
+      Not Implemented yet! Check it out later!
+    </div>
+    <div className="mt-3">
+      <Anchor onClick={onReset}>
+        Reset data
+      </Anchor>
+    </div>
   </div>
 );
 
