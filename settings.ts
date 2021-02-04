@@ -5,6 +5,7 @@ const settings = {
   AWS_REGION_NAME: process.env.MEDISHARE_AWS_REGION_NAME || 'us-east-1',
   BUCKET_NAME: process.env.BUCKET_NAME || 'videos',
   S3_ENDPOINT: '',
+  PROJECT_URL: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000',
 }
 
 if(!settings.PRODUCTION) {

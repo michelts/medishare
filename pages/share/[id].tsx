@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import axios from 'axios';
-import ShareDetail from '@templates/ShareDetail';
 import { GetServerSideProps } from 'next'
+import ShareDetail from '@templates/ShareDetail';
+import settings from '@settings';
 
 type SharedContentDetailType = {
   data: {
@@ -25,7 +26,7 @@ const SharedContentDetail: React.FC<SharedContentDetailType> = ({ data: { name, 
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params: { id } }) => {
-  const { data } = await axios.get(`http://localhost:3000/api/v1/shared-contents/${id}`)
+  const { data } = await axios.get(`${settings.PROJECT_URL}/api/v1/shared-contents/${id}`)
   return { props: { data } }
 }
 
