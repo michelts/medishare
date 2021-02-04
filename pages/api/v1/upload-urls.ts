@@ -1,5 +1,6 @@
-import { NowRequest, NowResponse } from '@vercel/node'
-import AWS from 'aws-sdk';
+import { NowRequest, NowResponse } from '@vercel/node';
+import settings from '@settings';
+import getS3Obj from '@services/getS3Obj';
 
 export default async function (req: NowRequest, res: NowResponse): Promise<void> {
   if(req.method === 'POST') {
@@ -8,29 +9,13 @@ export default async function (req: NowRequest, res: NowResponse): Promise<void>
   }
 }
 
-function getPresignedPostData({ id }) {
-  const endpoint = 'http://localhost:8001';
-  const bucket = 'videos';
+async function getPresignedPostData({ id }) {
   const filename = `${id}.webm`;
-  const s3 = new AWS.S3({
-    s3ForcePathStyle: true,
-    accessKeyId: 'S3RVER',
-    secretAccessKey: 'S3RVER',
-    endpoint: new AWS.Endpoint(endpoint),
-  });
-  const params = {
+  const data = await getS3Obj().createPresignedPost({
     Expires: 60,
-    Bucket: bucket,
+    Bucket: settings.BUCKET_NAME,
     Conditions: [['content-length-range', 100, 25 * (1024 ** 2)]], // 100Byte up to 25MB
     Fields: { 'Content-Type': 'video/webm', key: filename }
-  };
-  return new Promise((resolve, reject) => {
-    s3.createPresignedPost(params, (err, data) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve({ ...data, filename });
-    });
   });
+  return { ...data, filename };
 }

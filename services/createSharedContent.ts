@@ -15,7 +15,7 @@ export default async function createSharedContent({ name, file }: { name: string
 }
 
 async function getSignedPostUrl({ id }) {
-  const { data: { url, fields, filename } } = await axios.post('/api/v1/upload-urls/', { id });
+  const { data: { url, fields, filename } } = await axios.post('/api/v1/upload-urls', { id });
   return { url, fields, filename };
 }
 
@@ -27,6 +27,6 @@ async function postFile({ url, fields, file }) {
 }
 
 async function saveSharedContent({ id, name, filename }) {
-  const { data } = await axios.post('/api/v1/shared-contents/', { id, name, filename })
+  const { data } = await axios.post('/api/v1/shared-contents', { id, name, filename })
   return data;
 }

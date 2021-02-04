@@ -1,10 +1,16 @@
 import * as dynamoose from "dynamoose";
 import { Document } from "dynamoose/dist/Document";
+import settings from '@settings';
 
 dynamoose.aws.sdk.config.update({
-  region: 'us-east-1',
+  "region": settings.AWS_REGION_NAME,
+  "accessKeyId": settings.AWS_ACCESS_KEY_ID,
+  "secretAccessKey": settings.AWS_SECRET_ACCESS_KEY,
 });
-dynamoose.aws.ddb.local();
+
+if(!settings.PRODUCTION) {
+  dynamoose.aws.ddb.local();
+}
 
 const sharedContentSchema = new dynamoose.Schema({
   id: String,

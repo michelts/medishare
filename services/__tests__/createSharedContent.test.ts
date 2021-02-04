@@ -31,7 +31,7 @@ describe('createSharedContent service call', () => {
   });
 
   function assertSignedPostUrlWasRetrieved({ id }) {
-    expect(axios.post).toHaveBeenNthCalledWith(1, '/api/v1/upload-urls/', { id });
+    expect(axios.post).toHaveBeenNthCalledWith(1, '/api/v1/upload-urls', { id });
   }
 
   function assertFileWasPosted(data) {
@@ -44,6 +44,6 @@ describe('createSharedContent service call', () => {
   }
 
   function assertSharedContentWasSaved(sharedContent) {
-    expect(axios.post).toHaveBeenNthCalledWith(3, '/api/v1/shared-contents/', sharedContent);
+    expect(axios.post).toHaveBeenNthCalledWith(3, '/api/v1/shared-contents', sharedContent);
   }
 });

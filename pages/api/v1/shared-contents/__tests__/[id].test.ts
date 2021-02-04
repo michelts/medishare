@@ -20,6 +20,6 @@ describe('shared-contents detail API endpoint', () => {
       name: sharedContentData.name,
       url: expect.any(String),
     });
-    expect(data.url).toMatch(new RegExp(`http://localhost:8001/videos/${sharedContent.filename}`));
+    expect(data.url).toMatch(new RegExp(`https://s3.amazonaws.com/videos/${sharedContent.filename}`));
   });
 });

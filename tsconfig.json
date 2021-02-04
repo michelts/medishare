@@ -2,11 +2,13 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@services/*": [
-        "services/*"
-      ],
+      "@settings": ["settings"],
+      "@factories": ["factories"],
       "@models/*": [
         "models/*"
+      ],
+      "@services/*": [
+        "services/*"
       ],
       "@atoms/*": [
         "components/atoms/*"
@@ -19,8 +21,7 @@
       ],
       "@templates/*": [
         "components/templates/*"
-      ],
-      "@factories": ["factories"]
+      ]
     },
     "target": "es5",
     "lib": [
