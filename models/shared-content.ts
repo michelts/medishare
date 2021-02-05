@@ -8,7 +8,7 @@ dynamoose.aws.sdk.config.update({
   "secretAccessKey": settings.AWS_SECRET_ACCESS_KEY,
 });
 
-if(!settings.PRODUCTION) {
+if(settings.DEVELOPMENT) {
   dynamoose.aws.ddb.local();
 }
 
