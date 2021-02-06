@@ -5,7 +5,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Menu />
-      <div className="container w-96 mx-auto pt-3 pb-3">
+      <div className="container w-full md:w-96 mx-auto p-3">
         <Component {...pageProps} />
       </div>
     </>

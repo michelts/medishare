@@ -63,7 +63,7 @@ const ModePicker = ({ onChange }) => (
 );
 
 const VideoRecorder = ({ onChange }) => (
-  <div className="w-96 mb-3">
+  <div className="w-full md:w-96 mb-3">
     <ReactVideoRecorder
       isOnInitially
       isFlipped={false}
