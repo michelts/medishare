@@ -1,4 +1,4 @@
-const DEVELOPMENT = process.env.VERCEL_ENV === 'development';
+const DEVELOPMENT = process.env.VERCEL_ENV !== 'production' && process.env.VERCEL_URL !== 'preview';
 
 const settings = {
   DEVELOPMENT,
