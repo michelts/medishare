@@ -34,6 +34,7 @@ describe('ShareForm component', () => {
 
     await assertWhatsAppLinkIsPresent({ sharedContent });
     await assertCopyUrlIsPresent({ sharedContent });
+    await assertVisitIsPresent({ sharedContent });
   });
 
   function assertVideoRecorderWasRendered() {
@@ -48,9 +49,13 @@ describe('ShareForm component', () => {
     expect(link).toHaveProperty('href', encodeURI(`whatsapp://send?text=${title}: ${url}`));
   }
 
-  async function assertCopyUrlIsPresent({ sharedContent }) {
-    const link = await screen.findByRole('link', { name: /copy url/i });
+  async function assertVisitIsPresent({ sharedContent }) {
+    const link = await screen.findByRole('link', { name: /visit/i });
     const url = `http://localhost/share/${sharedContent.id}`;
     expect(link).toHaveProperty('href', url);
+  }
+
+  async function assertCopyUrlIsPresent() {
+    await screen.findByRole('button', { name: /copy url/i });
   }
 });

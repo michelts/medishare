@@ -4,6 +4,7 @@ import Link from "next/link"
 import createSharedContent from '@services/createSharedContent';
 import Anchor from '@atoms/Anchor';
 import Loading from '@atoms/Loading';
+import CopyToClipboard from '@atoms/CopyToClipboard';
 
 const ShareForm: React.FC = () => {
   const [mode, setMode] = useState(null);
@@ -97,6 +98,7 @@ const NameField = ({ onChange }) => {
 
 const ShareOptions = ({ id, onReset }) => {
   const path = `/share/${id}`;
+  const url = `${location.origin}${path}`;
   return (
     <div className="mb-3">
       <div className="mb-2">How to share?</div>
@@ -104,16 +106,22 @@ const ShareOptions = ({ id, onReset }) => {
         <ul className="flex flex-row">
           <li className="mr-2 p-2 bg-blue-300 hover:bg-blue-400">
             <a
-              href={`whatsapp://send?text=Video shared through MediShare: ${location.origin}${path}`}
+              href={`whatsapp://send?text=Video shared through MediShare: ${url}`}
               data-action="share/whatsapp/share"
             >
               Whatsapp
             </a>
           </li>
           <li className="mr-2 p-2 bg-blue-300 hover:bg-blue-400">
+            <CopyToClipboard
+              text={url}
+              label="Copy Url"
+            />
+          </li>
+          <li className="mr-2 p-2 bg-blue-300 hover:bg-blue-400">
             <Link href={path}>
               <a>
-                Copy Url
+                Visit
               </a>
             </Link>
           </li>
