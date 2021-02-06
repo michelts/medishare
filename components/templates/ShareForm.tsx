@@ -81,17 +81,23 @@ const VideoRecorder = ({ onChange }) => (
 const NameField = ({ onChange }) => {
   const [savedValue, setValue] = useState('');
   return (
-    <div className="mb-3">
+    <div className="flex items-center mb-3">
       Share with
       {' '}
       <input
-        className="border border-gray-400 rounded shadow-md px-3 py-2"
+        className="border border-gray-400 rounded shadow-md px-3 py-2 ml-3"
         placeholder="Type the patient name"
         type="text"
         onChange={({ target: { value } }) => setValue(value)}
         onBlur={() => onChange(savedValue)}
         onKeyDown={({ key }) => (key === 'Enter') && onChange(savedValue)}
       />
+      <button
+        type="button"
+        className="bg-blue-900 text-white px-2 py-2 border-blue-900 rounded shadow-md ml-3"
+      >
+        Go
+      </button>
     </div>
   );
 };
