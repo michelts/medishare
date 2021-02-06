@@ -1,7 +1,7 @@
 # MediShare
 
 This is a project implemented for the
-`[#VercelHashnode](https://townhall.hashnode.com/announcing-hashnode-hackathon-powered-by-vercel).
+[#VercelHashnode](https://townhall.hashnode.com/announcing-hashnode-hackathon-powered-by-vercel).
 It is a proof of concept of several technologies as well as a test of the
 Vercel's tooling.
 
